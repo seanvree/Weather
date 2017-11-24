@@ -4,7 +4,6 @@
 
 html,
 body {
-    /* display: inline; */
     position: fixed;
     top: 0;
     bottom: 0;
@@ -218,18 +217,6 @@ body {
     margin: -2em 1em;
 }
 
-.snow {
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    left: 50%;
-    width: 3.75em;
-    height: 3.75em;
-    margin: 0.375em 0 0 -2em;
-    color: #0cf;
-    background: transparent;
-}
-
 .rain,
 .lightning {
     position: absolute;
@@ -315,6 +302,18 @@ body {
     border-right: 0.25em solid transparent;
     border-bottom: 0.625em solid transparent;
     border-left: 0.375em solid;
+}
+
+.snow {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: 3.75em;
+    height: 3.75em;
+    margin: 0.375em 0 0 -2em;
+    color: #0cf;
+    background: transparent;
 }
 
 .flake:before,
