@@ -1,6 +1,14 @@
 # Weather
 Weather webapp written in HTML/JS. Minimal, self-hosted, and no config required. 
 
+<br>
+
+## Screenshot :
+
+<img src="https://i.imgur.com/7nrwwnx.png[/img]">
+
+
+
 
 ## About Me:
 - [seanvree](https://github.com/seanvree) (Windows Wizard)
