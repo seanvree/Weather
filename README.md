@@ -10,9 +10,8 @@ Weather webapp written in HTML/JS. Minimal, self-hosted, and no config required.
 - Click-to-convert Celsius/Fahrenheit.
 - 5-day forecast data (Click on right icon).
 
-<br>
-
 ## Notes:
+
  - Acquire your FREE API key and replace the default key in **/main.js : LINE 11**
  https://home.openweathermap.org/users/sign_up
  
