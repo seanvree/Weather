@@ -191,8 +191,9 @@ $(function() {
         $temp.text(newTemp.toFixed(0));
     };
 
-    $("#city").keydown(searchByCity).focusout(resetCity);
+    $("#city").keydown(searchByCity);
     $("#unit").click(changeUnit);
+    $("#temp").click(changeUnit);
     searchByLocation();
 
 });
