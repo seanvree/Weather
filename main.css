@@ -19,6 +19,23 @@ body {
     overflow: hidden;
 }
 
+a {
+    background-color: transparent;
+}
+
+a:active,
+a:hover {
+    outline: 10px;
+}
+
+a:link {
+    color: rgb(150, 150, 150);
+}
+
+a:visited {
+    color: rgb(150, 150, 150);
+}
+
 #weather {
     height: 250px;
     display: flex;
@@ -47,18 +64,30 @@ body {
 }
 
 #tempwrapper #unit:hover {
-    color: red;
+    color: #0cf;
+    cursor: pointer;
+}
+
+#tempwrapper #temp:hover {
+    color: #0cf;
     cursor: pointer;
 }
 
 #city {
     font-size: 30px;
-    width: 14rem;
+    width: 18rem;
     margin: auto 0;
+    left: 0;
+    right: 0;
     cursor: text;
-    /* border: 2px solid blue; */
-    z-index: 1;
-    clear: both;
+    z-index: 20;
+    background-color: transparent;
+    background: transparent;
+}
+
+#city:hover {
+    color: #0cf;
+    cursor: text;
 }
 
 .weather {
@@ -97,7 +126,7 @@ body {
     padding-left: 5%;
     float: right;
     vertical-align: middle;
-    cursor: default;
+    cursor: pointer;
     font-size: 100px;
 }
 
@@ -122,7 +151,8 @@ body {
     width: 3.6875em;
     height: 3.6875em;
     margin: -0.5em -1.84375em;
-    background: #fff;
+    background: transparent;
+    background-color: transparent;
     border-radius: 50%;
     font-size: 10em;
 }
@@ -366,7 +396,7 @@ body {
 .stars:after {
     content: '';
     position: absolute;
-    top: 25%;
+    top: 30px;
     left: 70%;
     width: 0.25em;
     height: 0.25em;
@@ -443,6 +473,7 @@ body {
     font-size: 10px;
     font-weight: 300;
     text-shadow: 1px 1px 1px black;
+    cursor: default;
 }
 
 [contenteditable] {
@@ -454,7 +485,7 @@ body {
 }
 
 [contenteditable]:focus {
-    border-color: red;
+    border-color: #0cf;
     outline-width: 0;
 }
 
@@ -465,7 +496,7 @@ body {
 [contenteditable]:hover:after {
     position: absolute;
     content: '';
-    color: red;
+    color: #0cf;
     font-family: sans-serif;
     margin-left: 2em;
     width: 9em;
@@ -550,6 +581,7 @@ body {
         transform: translateX(0.5em);
     }
 }
+
 
 /* Progress Bar */
 
