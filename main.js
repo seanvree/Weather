@@ -1,199 +1,703 @@
-/* 
-Weather condition API information: https://openweathermap.org/weather-conditions 
-*/
+[hidden] {
+    display: none;
+}
+
+html,
+body {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    margin-top: 5%;
+    color: rgb(225, 225, 225);
+    font-family: sans-serif;
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(70, 70, 70);
+    overflow: hidden;
+}
+
+a {
+    background-color: transparent;
+}
+
+a:active,
+a:hover {
+    outline: 10px;
+}
+
+a:link {
+    color: rgb(150, 150, 150);
+}
+
+a:visited {
+    color: rgb(150, 150, 150);
+}
+
+#weather {
+    height: 250px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#iconwrapper {
+    height: 100%;
+    width: 50%;
+    z-index: 2;
+    display: block;
+    float: left;
+    /* font-size: 8em; */
+}
+
+#tempwrapper {
+    height: 100%;
+    width: 50%;
+    z-index: 3;
+    display: block;
+    float: right;
+    /* font-size: 8em; */
+}
+
+#tempwrapper #unit:hover {
+    color: #0cf;
+    cursor: pointer;
+}
+
+#tempwrapper #temp:hover {
+    color: #0cf;
+    cursor: pointer;
+}
+
+#city {
+    font-size: 30px;
+    width: 18rem;
+    margin: auto 0;
+    left: 0;
+    right: 0;
+    cursor: text;
+    z-index: 20;
+    background-color: transparent;
+    background: transparent;
+}
+
+#city:hover {
+    color: #0cf;
+    cursor: text;
+}
+
+.weather {
+    width: 100%;
+}
+
+.iconwrapper {
+    width: 50%;
+    float: left;
+    margin: auto;
+}
+
+.icon {
+    position: relative;
+    font-size: 2em;
+    /* control icon size here */
+    height: 100%;
+    width: 250px;
+    float: left;
+    margin: auto;
+    clear: both;
+}
+
+.tempwrapper {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    vertical-align: middle;
+    float: right;
+}
+
+.temp {
+    position: absolute;
+    top: 60px;
+    right: 65px;
+    padding-left: 5%;
+    float: right;
+    vertical-align: middle;
+    cursor: pointer;
+    font-size: 100px;
+}
+
+.unit {
+    position: absolute;
+    top: 80px;
+    right: 5px;
+    float: right;
+    clear: both;
+    cursor: pointer;
+    font-size: 60px;
+}
+
+.hidden {
+    display: none;
+}
+
+.text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3.6875em;
+    height: 3.6875em;
+    margin: -0.5em -1.84375em;
+    background: transparent;
+    background-color: transparent;
+    border-radius: 50%;
+    font-size: 10em;
+}
+
+.cloud {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 3.6875em;
+    height: 3.6875em;
+    margin: -1.84375em;
+    background: grey;
+    opacity: .95;
+    border-radius: 50%;
+    box-shadow: -2.1875em 0.6875em 0 -0.6875em grey, 2.0625em 0.9375em 0 -0.9375em grey, 0 0 0 0.375em rgba(128, 128, 128, 0.493), -2.1875em 0.6875em 0 -0.3125em rgba(128, 128, 128, 0.493), 2.0625em 0.9375em 0 -0.5625em rgba(128, 128, 128, 0.493);
+}
+
+.cloud:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -0.5em;
+    display: block;
+    width: 4.5625em;
+    height: 1em;
+    background: grey;
+    /* box-shadow: 0 0.4375em 0 -0.0625em rgba(128, 128, 128, 0.493); */
+}
+
+.cloud:nth-child(2) {
+    z-index: 0;
+    background: grey;
+    box-shadow: -2.1875em 0.6875em 0 -0.6875em grey, 2.0625em 0.9375em 0 -0.9375em grey, 0 0 0 0.375em grey, -2.1875em 0.6875em 0 -0.3125em grey, 2.0625em 0.9375em 0 -0.5625em grey;
+    opacity: 0.3;
+    transform: scale(0.5) translate(6em, -3em);
+    animation: cloud 4s linear infinite;
+}
+
+.cloud:nth-child(2):after {
+    background: grey;
+    box-shadow: 0 0.4375em 0 -0.0625em grey;
+}
+
+.sun {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    margin: -1.25em;
+    background: rgb(180, 180, 42);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0.375em rgb(252, 152, 0);
+    animation: spinsun 12s infinite linear;
+}
+
+.rays {
+    position: absolute;
+    top: -2em;
+    left: 50%;
+    display: block;
+    width: 0.375em;
+    height: 1.125em;
+    margin-left: -0.1875em;
+    background: rgb(252, 152, 0);
+    border-radius: 0.25em;
+    box-shadow: 0 5.375em rgb(252, 152, 0);
+}
+
+.rays:before,
+.rays:after {
+    content: '';
+    position: absolute;
+    top: 0em;
+    left: 0em;
+    display: block;
+    width: 0.375em;
+    height: 1.125em;
+    transform: rotate(60deg);
+    transform-origin: 50% 3.25em;
+    background: rgb(252, 152, 0);
+    border-radius: 0.25em;
+    box-shadow: 0 5.375em rgb(252, 152, 0);
+}
+
+.rays:before {
+    transform: rotate(120deg);
+}
+
+.cloud+.sun {
+    margin: -2em 1em;
+}
+
+.rain,
+.lightning {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: 3.75em;
+    height: 3.75em;
+    margin: 0.375em 0 0 -2em;
+    background: transparent;
+}
+
+.rain:after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: 1.125em;
+    height: 1.125em;
+    margin: -1em 0 0 -0.25em;
+    background: #0cf;
+    border-radius: 100% 0 60% 50% / 60% 0 100% 50%;
+    box-shadow: 0.625em 0.875em 0 -0.125em rgba(255, 255, 255, 0.2), -0.875em 1.125em 0 -0.125em rgba(255, 255, 255, 0.2), -1.375em -0.125em 0 rgba(255, 255, 255, 0.2);
+    transform: rotate(-28deg);
+    animation: rain 3s linear infinite;
+}
+
+.bolt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -0.25em 0 0 -0.125em;
+    color: #fff;
+    opacity: 0.3;
+    animation: lightning 2s linear infinite;
+}
+
+.bolt:nth-child(2) {
+    width: 0.5em;
+    height: 0.25em;
+    margin: -1.75em 0 0 -1.875em;
+    transform: translate(2.5em, 2.25em);
+    opacity: 0.2;
+    animation: lightning 1.5s linear infinite;
+}
+
+.bolt:before,
+.bolt:after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    margin: -1.625em 0 0 -1.0125em;
+    border-top: 1.25em solid transparent;
+    border-right: 0.75em solid;
+    border-bottom: 0.75em solid;
+    border-left: 0.5em solid transparent;
+    transform: skewX(-10deg);
+}
+
+.bolt:after {
+    margin: -0.25em 0 0 -0.25em;
+    border-top: 0.75em solid;
+    border-right: 0.5em solid transparent;
+    border-bottom: 1.25em solid transparent;
+    border-left: 0.75em solid;
+    transform: skewX(-10deg);
+}
+
+.bolt:nth-child(2):before {
+    margin: -0.75em 0 0 -0.5em;
+    border-top: 0.625em solid transparent;
+    border-right: 0.375em solid;
+    border-bottom: 0.375em solid;
+    border-left: 0.25em solid transparent;
+}
+
+.bolt:nth-child(2):after {
+    margin: -0.125em 0 0 -0.125em;
+    border-top: 0.375em solid;
+    border-right: 0.25em solid transparent;
+    border-bottom: 0.625em solid transparent;
+    border-left: 0.375em solid;
+}
+
+.snow {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: 3.75em;
+    height: 3.75em;
+    margin: 0.375em 0 0 -2em;
+    color: #0cf;
+    background: transparent;
+}
+
+.flake:before,
+.flake:after {
+    content: '\2744';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -1.025em 0 0 -1.0125em;
+    color: #0cf;
+    opacity: 0.4;
+    animation: spin 8s linear infinite reverse;
+}
+
+.flake:after {
+    margin: 0.125em 0 0 -1em;
+    font-size: 1.5em;
+    opacity: 0.8;
+    animation: spin 14s linear infinite;
+}
+
+.flake:nth-child(2):before {
+    margin: -0.5em 0 0 0.25em;
+    font-size: 1.25em;
+    opacity: 0.4;
+    animation: spin 10s linear infinite;
+}
+
+.flake:nth-child(2):after {
+    margin: 0.375em 0 0 0.125em;
+    font-size: 2em;
+    opacity: 0.8;
+    animation: spin 16s linear infinite reverse;
+}
+
+.moon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3em;
+    height: 3em;
+    margin: -1.5em;
+    background: rgba(0, 34, 255, 0.083);
+    border-radius: 50%;
+    box-shadow: inset 1.25em 0 rgba(19, 7, 240, 0.912);
+}
+
+.stars,
+.stars:before,
+.stars:after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 70%;
+    width: 0.25em;
+    height: 0.25em;
+    margin: -0.125em;
+    color: rgba(255, 255, 255, 0.5);
+    background: currentColor;
+    border-radius: 50%;
+    box-shadow: -4.5em 5em;
+    animation: twinkle 5s steps(2) infinite;
+}
+
+.stars:before {
+    top: 1em;
+    left: 0.25em;
+    box-shadow: -3.75em 4em;
+    opacity: 0.5;
+    animation: twinkle 4s steps(2) infinite;
+}
+
+.stars:after {
+    top: 0.5em;
+    left: -0.75em;
+    box-shadow: -3.75em 3.75em;
+    opacity: 0.25;
+    animation: twinkle 3s steps(2) infinite;
+}
+
+.cloud+.moon {
+    margin: -2em 1em;
+}
+
+.fog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 1.75em 0 0 0;
+}
+
+.fog::before,
+.fog::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 5em;
+    height: 0.5em;
+    margin-left: -2.5em;
+    color: rgba(0, 204, 255, 0.46);
+    background: currentColor;
+    border-radius: 0.5em;
+    animation: fog 6s infinite linear alternate;
+}
+
+.fog::before {
+    top: 0.75em;
+}
+
+.fog::after {
+    top: 1.5em;
+    animation-delay: -6s;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 200px;
+    height: 30px;
+    padding-top: 8px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    text-align: center;
+    vertical-align: middle;
+    color: #b1b1b1;
+    background-color: rgba(21, 21, 21, 0.42);
+    font-size: 10px;
+    font-weight: 300;
+    text-shadow: 1px 1px 1px black;
+    cursor: default;
+}
+
+[contenteditable] {
+    display: inline-block;
+    position: relative;
+    padding: 0.1em;
+    border: 3px solid transparent;
+    border-radius: 2rem;
+}
+
+[contenteditable]:focus {
+    border-color: #0cf;
+    outline-width: 0;
+}
+
+[contenteditable]:focus:after {
+    content: '';
+}
+
+[contenteditable]:hover:after {
+    position: absolute;
+    content: '';
+    color: #0cf;
+    font-family: sans-serif;
+    margin-left: 2em;
+    width: 9em;
+    text-align: right;
+}
 
 
-$(function() {
-    var $city = $('#city');
+/* Animations */
 
-    var unit = 'imperial';
-    var lastData = {};
-    var weatherApiKey = 'd2ae6d25c09549f38d8feed1d116c580';
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+        color: #0cf;
+    }
+}
 
-    var weatherApi = 'https://api.openweathermap.org/data/2.5/weather?callback=?';
-    var startPos;
-    // seattle
-    var lat = 47.6097;
-    var lon = -122.3331;
-    var geoOptions = {
-        maximumAge: 5 * 60 * 1000,
-        timeout: 10 * 1000
-    };
+@keyframes spinsun {
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
-    var printResults = function(data) {
-        if (data) {
-            lastData = data;
-        }
-        $("#city").text(lastData.name);
-        $("#icon").text(lastData.weather.icon);
-        $("#temp").text(lastData.main.temp.toFixed(0));
+@keyframes cloud {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5) translate(-200%, -3em);
+    }
+}
 
-        console.log(lastData.name);
-        console.log(lastData.id);
+@keyframes rain {
+    0% {
+        background: #0cf;
+        box-shadow: 0.625em 0.875em 0 -0.125em rgba(255, 255, 255, 0.2), -0.875em 1.125em 0 -0.125em rgba(255, 255, 255, 0.2), -1.375em -0.125em 0 #0cf;
+    }
+    25% {
+        box-shadow: 0.625em 0.875em 0 -0.125em rgba(255, 255, 255, 0.2), -0.875em 1.125em 0 -0.125em #0cf, -1.375em -0.125em 0 rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0.625em 0.875em 0 -0.125em #0cf, -0.875em 1.125em 0 -0.125em rgba(255, 255, 255, 0.2), -1.375em -0.125em 0 rgba(255, 255, 255, 0.2);
+    }
+    100% {
+        box-shadow: 0.625em 0.875em 0 -0.125em rgba(255, 255, 255, 0.2), -0.875em 1.125em 0 -0.125em rgba(255, 255, 255, 0.2), -1.375em -0.125em 0 #0cf;
+    }
+}
+
+@keyframes lightning {
+    45% {
+        color: rgb(255, 255, 0);
+        background: rgb(255, 255, 0);
+        opacity: 0.5;
+    }
+    50% {
+        color: rgb(255, 255, 0);
+        background: rgb(255, 255, 0);
+        opacity: 1;
+    }
+    55% {
+        color: rgb(255, 255, 0);
+        background: rgb(255, 255, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes twinkle {
+    100% {
+        color: rgba(255, 255, 255, 0.2);
+    }
+}
+
+@keyframes fog {
+    0% {
+        transform: translateX(-0.5em);
+    }
+    100% {
+        transform: translateX(0.5em);
+    }
+}
 
 
-        var cityid = lastData.id;
-        $("#weatherlink").attr('href', function(index, attr) {
-            return ("https://openweathermap.org/city/") + cityid;
-        });
+/* Progress Bar */
+
+.pace {
+    -webkit-pointer-events: none;
+    /* pointer-events: none; */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    /* user-select: none; */
+}
+
+.pace-inactive {
+    display: none;
+}
+
+.pace .pace-progress {
+    background: #0cf;
+    /* background: rgba(21, 21, 21, 0.42); */
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    right: 100%;
+    width: 100%;
+    height: 10px;
+}
+
+.pace .pace-progress-inner {
+    display: block;
+    position: absolute;
+    right: 0px;
+    width: 100px;
+    height: 100%;
+    box-shadow: 0 0 10px #0cf, 0 0 5px #0cf;
+    opacity: 1.0;
+    -webkit-transform: rotate(3deg) translate(0px, -4px);
+    -moz-transform: rotate(3deg) translate(0px, -4px);
+    -ms-transform: rotate(3deg) translate(0px, -4px);
+    -o-transform: rotate(3deg) translate(0px, -4px);
+    transform: rotate(3deg) translate(0px, -4px);
+}
 
 
-        $(".icon").addClass('hidden');
-        var weatherCode = parseInt(lastData.weather[0].id, 10);
-        var icon = lastData.weather[0].icon;
-        var description = lastData.weather[0].description;
+/* Activity circle  */
 
-        console.log(weatherCode);
-        console.log(description);
-        console.log(icon);
 
-        if (icon == "01d") {
-            $(".sunny").removeClass('hidden');
+.pace .pace-activity {
+    display: block;
+    position: fixed;
+    z-index: 2000;
+    top: 15px;
+    right: 15px;
+    width: 14px;
+    height: 10px;
+    border: solid 2px transparent;
+    border-top-color: #0cf;
+    border-left-color: #0cf;
+    border-radius: 10px;
+    -webkit-animation: pace-spinner 400ms linear infinite;
+    -moz-animation: pace-spinner 400ms linear infinite;
+    -ms-animation: pace-spinner 400ms linear infinite;
+    -o-animation: pace-spinner 400ms linear infinite;
+    animation: pace-spinner 400ms linear infinite;
+} 
 
-        } else if (icon == "01n") {
-            $(".clear-night").removeClass('hidden');
 
-        } else if (icon == "02d") {
-            $(".sunny").removeClass('hidden');
+/* @-webkit-keyframes pace-spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+} */
 
-        } else if (icon == "02n") {
-            $(".clear-night").removeClass('hidden');
+/* @-moz-keyframes pace-spinner {
+    0% {
+        -moz-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -moz-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+} */
 
-        } else if (icon == "03d") {
-            $(".sunny-cloudy").removeClass('hidden');
+/* @-o-keyframes pace-spinner {
+    0% {
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+} */
 
-        } else if (icon == "03n") {
-            $(".moon-cloudy").removeClass('hidden');
+/* @-ms-keyframes pace-spinner {
+    0% {
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+} */
 
-        } else if (icon == "04d") {
-            $(".overcast").removeClass('hidden');
-
-        } else if (icon == "04n") {
-            $(".moon-overcast").removeClass('hidden');
-
-        } else if (icon == "09d") {
-            $(".drizzle").removeClass('hidden');
-
-        } else if (icon == "09n") {
-            $(".moon-drizzle").removeClass('hidden');
-
-        } else if (icon == "10d") {
-            $(".rainy").removeClass('hidden');
-
-        } else if (icon == "10n") {
-            $(".moon-rainy").removeClass('hidden');
-
-        } else if (icon == "11d") {
-            $(".thunderstorm").removeClass('hidden');
-
-        } else if (icon == "11n") {
-            $(".moon-thunderstorm").removeClass('hidden');
-
-        } else if (icon == "13d") {
-            $(".sun-snow").removeClass('hidden');
-
-        } else if (icon == "13n") {
-            $(".moon-snow").removeClass('hidden');
-
-        } else if (icon == "50d") {
-            $(".foggy").removeClass('hidden');
-
-        } else if (icon == "50n") {
-            $(".foggy-night").removeClass('hidden');
-
-        } else if (weatherCode == 905 || 954 || 956) {
-            $(".windy").removeClass('hidden');
-
-        } else {
-            $(".unknown").removeClass('hidden');
-        }
-    };
-
-    var getWeather = function(lat, lon, q) {
-        var city = $city.text();
-        $city.text(city + ' (Loading...)');
-        var weatherData = {
-            appid: weatherApiKey,
-            units: unit
-        };
-        if (q) {
-            weatherData.q = q;
-        } else {
-            weatherData.lat = lat;
-            weatherData.lon = lon;
-        }
-        $.getJSON(weatherApi, weatherData, printResults);
-    };
-
-    var geoSuccess = function(position) {
-        startPos = position;
-        lat = startPos.coords.latitude;
-        lon = startPos.coords.longitude;
-        getWeather(lat, lon);
-    };
-
-    var geoError = function(error) {
-        console.log('Error occurred. Error code: ' + error.code);
-        // error.code can be:
-        //   0: unknown error
-        //   1: permission denied
-        //   2: position unavailable (error response from location provider)
-        //   3: timed out
-
-        // ignore it and use the default lat and lon
-
-        getWeather(lat, lon);
-    };
-
-    var searchByLocation = function() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
-        } else {
-            getWeather(lat, lon);
-        }
-    };
-
-    var searchByCity = function(event) {
-        var esc = event.which == 27;
-        var enter = event.which == 13;
-        var ele = event.target;
-
-        if (esc) {
-            resetCity();
-        } else if (enter) {
-            event.preventDefault();
-            var city = $city.text();
-            getWeather(null, null, city);
-            ele.blur();
-        }
-    };
-
-    var resetCity = function() {
-        $city.text(lastData.name).blur();
-    };
-
-    var changeUnit = function() {
-        var $temp = $("#temp");
-        var $unit = $('#unit');
-        var currentTemp = parseFloat($temp.text());
-        var newTemp = 0;
-        //°C  x  9/5 + 32 = °F
-        // (°F  -  32)  x  5/9 = °C
-        if (unit === 'imperial') {
-            newTemp = (currentTemp - 32) * 5 / 9;
-            unit = 'metric';
-            $unit.text('°C');
-        } else {
-            newTemp = currentTemp * 9 / 5 + 32;
-            unit = 'imperial';
-            $unit.text('°F');
-        }
-        $temp.text(newTemp.toFixed(0));
-    };
-
-    $("#city").keydown(searchByCity);
-    $("#unit").click(changeUnit);
-    $("#temp").click(changeUnit);
-    searchByLocation();
-
-});
+@keyframes pace-spinner {
+    0% {
+        transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+} 
