@@ -4,18 +4,13 @@ Weather webapp written in HTML/JS. Minimal, self-hosted, and no config required.
 # Features:
 
 - Self-hosted, HTML-pure, minimal.
+- Mobile ready
 - Weather data auto generated via Geolocation.
 - Weather API provided via OpenWeatherMap.
 - Animated icons.
 - Click-to-convert Celsius/Fahrenheit.
 - 5-day forecast data (Click on right icon).
-
-## Notes:
-
- - Acquire your FREE API key and replace the default key in **/main.js : LINE 11**
- https://home.openweathermap.org/users/sign_up
- 
- - Auto refresh default setting is set at 30 seconds. Change in **/index.html : LINE 30**
+- See this integrated into a dope custom home/start page here: https://github.com/seanvree/homepage
 
 ## Screenshot :
 
@@ -25,6 +20,28 @@ Weather webapp written in HTML/JS. Minimal, self-hosted, and no config required.
 
 <img src="https://i.imgur.com/Nf8H56C.png[/img]">
 
+## Notes:
+
+ - Acquire your FREE API key and replace the default key in **/main.js : LINE 11**
+ https://home.openweathermap.org/users/sign_up
+ 
+ - Auto refresh default setting is set at 30 seconds. Change in **/index.html : LINE 31**
+ 
+ 
+- Change the default temp unit from F to C by changing the following two items:
+
+**/index.html: LINE 40:**
+
+```
+<div id="unit" class="unit">&degC</div>
+```
+
+**/main.js: LINE 9:**
+
+```
+var unit = 'metric';
+```
+ 
 
 ## About Me:
 - [seanvree](https://github.com/seanvree) (Windows Wizard)
