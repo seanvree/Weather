@@ -25,12 +25,15 @@ Weather webapp written in HTML/JS. Minimal, self-hosted, and no config required.
  - Acquire your FREE API key and replace the default key in **/main.js : LINE 11**
  https://home.openweathermap.org/users/sign_up
  
- - Auto refresh default setting is set at 30 seconds. Change in **/index.html : LINE 31**
- 
+- Weather auto refresh default setting is set at **30** seconds (2 calls per minute), or 30000(ms). Max is 60 API calls per 1 minute.  Change in **/main.js : LINE 202:**
+
+```
+var t = window.setInterval(searchByLocation, 30000);
+```
  
 - Change the default temp unit from F to C by changing the following two items:
 
-**/index.html: LINE 40:**
+**/index.html: LINE 42:**
 
 ```
 <div id="unit" class="unit">&degC</div>
