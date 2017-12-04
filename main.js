@@ -3,7 +3,7 @@ Weather condition API information: https://openweathermap.org/weather-conditions
 */
 
 
-$(function() {
+$(function () {
     var $city = $('#city');
 
     var unit = 'imperial';
@@ -20,7 +20,7 @@ $(function() {
         timeout: 10 * 1000
     };
 
-    var printResults = function(data) {
+    var printResults = function (data) {
         if (data) {
             lastData = data;
         }
@@ -31,20 +31,20 @@ $(function() {
         console.log(lastData.name);
         console.log(lastData.id);
 
-
         var cityid = lastData.id;
-        $("#weatherlink").attr('href', function(index, attr) {
+        $("#weatherlink").attr('href', function (index, attr) {
             return ("https://openweathermap.org/city/") + cityid;
         });
-
 
         $(".icon").addClass('hidden');
         var weatherCode = parseInt(lastData.weather[0].id, 10);
         var icon = lastData.weather[0].icon;
         var description = lastData.weather[0].description;
+        var temp = parseInt(lastData.main.temp, 10);
 
         console.log(weatherCode);
         console.log(description);
+        console.log(temp);
         console.log(icon);
 
         if (icon == "01d") {
@@ -109,7 +109,7 @@ $(function() {
         }
     };
 
-    var getWeather = function(lat, lon, q) {
+    var getWeather = function (lat, lon, q) {
         var city = $city.text();
         $city.text(city + ' (Loading...)');
         var weatherData = {
@@ -125,14 +125,14 @@ $(function() {
         $.getJSON(weatherApi, weatherData, printResults);
     };
 
-    var geoSuccess = function(position) {
+    var geoSuccess = function (position) {
         startPos = position;
         lat = startPos.coords.latitude;
         lon = startPos.coords.longitude;
         getWeather(lat, lon);
     };
 
-    var geoError = function(error) {
+    var geoError = function (error) {
         console.log('Error occurred. Error code: ' + error.code);
         // error.code can be:
         //   0: unknown error
@@ -145,7 +145,7 @@ $(function() {
         getWeather(lat, lon);
     };
 
-    var searchByLocation = function() {
+    var searchByLocation = function () {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
         } else {
@@ -153,7 +153,7 @@ $(function() {
         }
     };
 
-    var searchByCity = function(event) {
+    var searchByCity = function (event) {
         var esc = event.which == 27;
         var enter = event.which == 13;
         var ele = event.target;
@@ -168,11 +168,11 @@ $(function() {
         }
     };
 
-    var resetCity = function() {
+    var resetCity = function () {
         $city.text(lastData.name).blur();
     };
 
-    var changeUnit = function() {
+    var changeUnit = function () {
         var $temp = $("#temp");
         var $unit = $('#unit');
         var currentTemp = parseFloat($temp.text());
@@ -195,5 +195,16 @@ $(function() {
     $("#unit").click(changeUnit);
     $("#temp").click(changeUnit);
     searchByLocation();
+
+    // How frequent API call is made for weather update//
+    //Max is 60 calls per 1 minute. Default is 30 seconds (2 calls per minute), or 30000(ms) //
+
+    var t = window.setInterval(searchByLocation, 30000);
+
+    function refreshDiv() {
+        $.ajaxSetup({
+            cache: false
+        });
+    };
 
 });
