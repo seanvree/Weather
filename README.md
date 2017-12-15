@@ -18,7 +18,7 @@ Weather webapp written in HTML/JS. Minimal, self-hosted, and no config required.
 
 ## Animated Icons :
 
-<img src="https://i.imgur.com/Nf8H56C.png[/img]">
+<img src="https://i.imgur.com/0iamcsT.gif[/img]">
 
 ## Notes:
 
