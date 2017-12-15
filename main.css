@@ -10,7 +10,7 @@ body {
     left: 0;
     right: 0;
     padding: 0;
-    margin-top: 5%;
+    margin-top: 0;
     color: rgb(225, 225, 225);
     font-family: sans-serif;
     justify-content: center;
@@ -18,6 +18,37 @@ body {
     background-color: rgb(70, 70, 70);
     overflow: hidden;
 }
+
+@media (min-width: 858px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 780px) {
+    html {
+        font-size: 11px;
+    }
+}
+
+@media (min-width: 702px) {
+    html {
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 724px) {
+    html {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 623px) {
+    html {
+        font-size: 8px;
+    }
+}
+
 
 a {
     background-color: transparent;
@@ -37,9 +68,10 @@ a:visited {
 }
 
 #weather {
-    height: 250px;
-    display: flex;
     position: relative;
+    display: flex;
+    margin-top: 5%;
+    height: 250px;    
     justify-content: center;
     text-align: center;
     vertical-align: middle;
@@ -51,7 +83,6 @@ a:visited {
     z-index: 2;
     display: block;
     float: left;
-    /* font-size: 8em; */
 }
 
 #tempwrapper {
@@ -60,7 +91,6 @@ a:visited {
     z-index: 3;
     display: block;
     float: right;
-    /* font-size: 8em; */
 }
 
 #tempwrapper #unit:hover {
@@ -75,7 +105,7 @@ a:visited {
 
 #city {
     font-size: 30px;
-    width: 18rem;
+    width: 10em;
     margin: auto 0;
     left: 0;
     right: 0;
@@ -102,13 +132,14 @@ a:visited {
 
 .icon {
     position: relative;
-    font-size: 2em;
-    /* control icon size here */
-    height: 100%;
-    width: 250px;
+    top: 5em;
+    left: 4em;
+    line-height: 0em;
     float: left;
-    margin: auto;
     clear: both;
+     /* control icon size here */
+    font-size: 2.5em;
+    padding-right: 5%;  
 }
 
 .tempwrapper {
@@ -121,23 +152,22 @@ a:visited {
 
 .temp {
     position: absolute;
-    top: 60px;
-    right: 65px;
+    top: .6em;
+    right: 60px;
     padding-left: 5%;
     float: right;
     vertical-align: middle;
     cursor: pointer;
-    font-size: 100px;
+    font-size: 10em;
 }
 
 .unit {
     position: absolute;
-    top: 80px;
-    right: 5px;
-    float: right;
+    top: 1.3em;
+    right: 0.1em;
     clear: both;
     cursor: pointer;
-    font-size: 60px;
+    font-size: 6em;
 }
 
 .hidden {
@@ -396,8 +426,8 @@ a:visited {
 .stars:after {
     content: '';
     position: absolute;
-    top: 30px;
-    left: 70%;
+    top: -3em;
+    left: 2em;
     width: 0.25em;
     height: 0.25em;
     margin: -0.125em;
@@ -599,7 +629,6 @@ a:visited {
 
 .pace .pace-progress {
     background: #0cf;
-    /* background: rgba(21, 21, 21, 0.42); */
     position: fixed;
     z-index: 2000;
     top: 0;
