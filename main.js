@@ -37,6 +37,69 @@ $(function () {
         });
 
         $(".icon").addClass('hidden');
+
+
+        $(function () {
+            var temp = parseInt($('#temp').text().trim());
+            var color = 'red';
+
+            if (!isNaN(temp)) {
+
+                if (temp >= 100) {
+                    color = '#c10001';
+                };
+
+                if (temp >= 90 && temp <= 99) {
+                    color = '#cc0001';
+                };
+
+                if (temp >= 80 && temp <= 89) {
+                    color = '#fe0002';
+                };
+
+                if (temp >= 70 && temp <= 79) {
+                    color = '#f79649';
+                };
+
+                if (temp >= 60 && temp <= 69) {
+                    color = '#ffc100';
+                };
+
+                if (temp >= 50 && temp <= 59) {
+                    color = '#92d14f';
+                };
+
+                if (temp >= 40 && temp <= 49) {
+                    color = '#00af50';
+                };
+
+                if (temp >= 30 && temp <= 39) {
+                    color = '#0199fe';
+                };
+
+                if (temp >= 20 && temp <= 29) {
+                    color = '#3432ff';
+                };
+
+                if (temp >= 10 && temp <= 19) {
+                    color = '#7030a2';
+                };
+
+                if (temp >= 0 && temp <= 9) {
+                    color = '#980299';
+                };
+
+                if (temp <= 0) {
+                    color = '#cc0199';
+                };
+
+                $('#temp').css('color', color);
+                $('#unit').css('color', color);
+            }
+        });
+
+
+
         var weatherCode = parseInt(lastData.weather[0].id, 10);
         var icon = lastData.weather[0].icon;
         var description = lastData.weather[0].description;
