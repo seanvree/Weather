@@ -70,8 +70,7 @@ a:visited {
 #weather {
     position: relative;
     display: flex;
-    margin-top: 5%;
-    height: 250px;    
+    height: 24em;    
     justify-content: center;
     text-align: center;
     vertical-align: middle;
