@@ -1,6 +1,8 @@
 # Weather
 Weather webapp written in HTML/JS. Minimal, self-hosted, and no config required. 
 
+DEMO:  https://seanvree.github.io/Weather/
+
 # Features:
 
 - Self-hosted, HTML-pure, minimal.
