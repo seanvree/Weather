@@ -38,7 +38,6 @@ $(function () {
 
         $(".icon").addClass('hidden');
 
-
         $(function () {
             var temp = parseInt($('#temp').text().trim());
             var color = 'red';
@@ -58,7 +57,7 @@ $(function () {
                 };
 
                 if (temp >= 70 && temp <= 79) {
-                    color = '#f79649';
+                    color = '#E83C0C';
                 };
 
                 if (temp >= 60 && temp <= 69) {
