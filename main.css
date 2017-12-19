@@ -5,6 +5,8 @@
 html,
 body {
     position: fixed;
+    opacity: 1;
+    transition: 1.5s opacity;
     top: 0;
     bottom: 0;
     left: 0;
@@ -17,6 +19,11 @@ body {
     text-align: center;
     background-color: rgb(70, 70, 70);
     overflow: hidden;
+}
+
+body.fade-out {
+    opacity: 0;
+    transition: none;
 }
 
 @media (min-width: 858px) {
@@ -74,6 +81,7 @@ a:visited {
     justify-content: center;
     text-align: center;
     vertical-align: middle;
+    Top: 5%;
 }
 
 #iconwrapper {
@@ -103,16 +111,17 @@ a:visited {
 }
 
 #city {
+    position: relative;
     font-size: 30px;
-    width: 10em;
-    margin: auto 0;
-    left: 0;
-    right: 0;
+    width: 8em;
+    max-width: 10em;
+    margin: 40px auto .5em;
     cursor: text;
     z-index: 20;
-    background-color: transparent;
-    background: transparent;
+    background-color: rgb(70, 70, 70);
+    background: rgb(70, 70, 70);
 }
+
 
 #city:hover {
     color: #0cf;
@@ -184,7 +193,7 @@ a:visited {
     background-color: transparent;
     border-radius: 50%;
     font-size: 10em;
-}
+} 
 
 .cloud {
     position: absolute;
@@ -512,6 +521,7 @@ a:visited {
     border: 3px solid transparent;
     border-radius: 2rem;
 }
+
 
 [contenteditable]:focus {
     border-color: #0cf;
