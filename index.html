@@ -31,7 +31,6 @@ https://github.com/seanvree
 
     <script src="main.js" async></script>
 
-
     <!-- <meta http-equiv="refresh" content="30"> -->
 
 </head>
@@ -47,54 +46,53 @@ https://github.com/seanvree
 
     <div id="weather">
 
-        <div id="tempwrapper" class="tempwrapper">
+        <div id="tempwrapper" class="tempwrapper" >
             <div id="unit" class="unit">&degF</div>
-            <div id="temp" class="temp"></div>
-
+            <div id="temp" class="temp" data-tooltip='Convert'></div>
         </div>
 
         <div id="iconwrapper" class="iconwrapper">
 
-            <a id="weatherlink" href="#">
+            <a id="weatherlink" href="#" >
 
                 <div class="icon unknown">
                     <div class="text"></div>
                 </div>
 
-                <div class="icon sunny">
+                <div class="icon sunny" data-tooltip='Forecast'>
                     <div class="sun">
                         <div class="rays"></div>
                     </div>
                 </div>
 
-                <div class="icon clear-night">
+                <div class="icon clear-night" data-tooltip='Forecast'>
                     <div class="moon"></div>
                     <div class="stars"></div>
                 </div>
 
-                <div class="icon sunny-cloudy">
+                <div class="icon sunny-cloudy" data-tooltip='Forecast'>
                     <div class="cloud"></div>
                     <div class="sun">
                         <div class="rays"></div>
                     </div>
                 </div>
 
-                <div class="icon moon-cloudy">
+                <div class="icon moon-cloudy" data-tooltip='Forecast'>
                     <div class="cloud"></div>
                     <div class="moon"></div>
                 </div>
 
-                <div class="icon overcast">
+                <div class="icon overcast" data-tooltip='Forecast'>
                     <div class="cloud"></div>
                 </div>
 
-                <div class="icon moon-overcast">
+                <div class="icon moon-overcast" data-tooltip='Forecast'>
                     <div class="moon">
                         <div class="cloud"></div>
                     </div>
                 </div>
 
-                <div class="icon drizzle">
+                <div class="icon drizzle" data-tooltip='Forecast'>
                     <div class="cloud"></div>
                     <div class="sun">
                         <div class="rays"></div>
@@ -102,25 +100,25 @@ https://github.com/seanvree
                     <div class="rain"></div>
                 </div>
 
-                <div class="icon moon-drizzle">
+                <div class="icon moon-drizzle" data-tooltip='Forecast'>
                     <div class="cloud"></div>
                     <div class="moon"></div>
                     <div class="rain"></div>
                 </div>
 
-                <div class="icon rainy">
+                <div class="icon rainy" data-tooltip='Forecast'>
                     <div class="cloud"></div>
                     <div class="rain"></div>
                 </div>
 
-                <div class="icon moon-rainy">
+                <div class="icon moon-rainy" data-tooltip='Forecast'>
                     <div class="moon">
                         <div class="cloud"></div>
                     </div>
                     <div class="rain"></div>
                 </div>
 
-                <div class="icon thunderstorm">
+                <div class="icon thunderstorm" data-tooltip='Forecast'>
                     <div class="cloud"></div>
                     <div class="lightning">
                         <div class="bolt"></div>
@@ -128,17 +126,16 @@ https://github.com/seanvree
                     </div>
                 </div>
 
-                <div class="icon moon-thunderstorm">
+                <div class="icon moon-thunderstorm" data-tooltip='Forecast'>
                     <div class="cloud"></div>
                     <div class="moon"></div>
-
                     <div class="lightning">
                         <div class="bolt"></div>
                         <div class="bolt"></div>
                     </div>
                 </div>
 
-                <div class="icon sun-snow">
+                <div class="icon sun-snow" data-tooltip='Forecast'>
                     <div class="cloud"></div>
                     <div class="snow">
                         <div class="flake"></div>
@@ -146,7 +143,7 @@ https://github.com/seanvree
                     </div>
                 </div>
 
-                <div class="icon moon-snow">
+                <div class="icon moon-snow" data-tooltip='Forecast'>
                     <div class="moon">
                         <div class="cloud"></div>
                     </div>
@@ -156,18 +153,18 @@ https://github.com/seanvree
                     </div>
                 </div>
 
-                <div class="icon foggy">
+                <div class="icon foggy" data-tooltip='Forecast'>
                     <div class="cloud"></div>
                     <div class="fog"></div>
                 </div>
 
-                <div class="icon foggy-night">
+                <div class="icon foggy-night" data-tooltip='Forecast'>
                     <div class="cloud"></div>
                     <div class="moon"></div>
                     <div class="fog"></div>
                 </div>
 
-                <div class="icon windy">
+                <div class="icon windy" data-tooltip='Forecast'>
                     <div class="cloud"></div>
                     <div class="cloud"></div>
                 </div>
@@ -178,7 +175,9 @@ https://github.com/seanvree
 
     </div>
 
-    <form id="city" contenteditable> </form>
+    <div id="citySearch" data-tooltip='Search'>
+        <form id="city" contenteditable > </form>
+    </div>
 
     <div id="footer">
         <p>
