@@ -57,8 +57,71 @@ body.fade-out {
 }
 
 
-a {
-    background-color: transparent;
+[data-tooltip] {
+    cursor: pointer;
+    position: relative;
+    z-index: 1000;
+}
+
+[data-tooltip]:before,
+[data-tooltip]:after {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.15s cubic-bezier(0.5, 1, 0.25, 1);
+    z-index: 1000;
+}
+
+[data-tooltip]:before {
+    padding: 5px;
+    width: 110px;
+    border-radius: 3px;
+    background: rgba(0, 0, 0, 0.500);
+    color: #fff;
+    content: attr(data-tooltip);
+    text-align: center;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+[data-tooltip]:after {
+    border: 8px solid transparent;
+    width: 0;
+    content: "";
+    font-size: 0;
+    line-height: 0;
+}
+
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+    visibility: visible;
+    opacity: 1;
+}
+
+[data-tooltip].t-md:before {
+    width: 140px;
+}
+
+[data-tooltip].t-top:before {
+    bottom: 100%;
+    left: 50%;
+    margin-bottom: 5px;
+    transform: translateX(-50%);
+}
+
+[data-tooltip].t-top:after {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top: 8px solid rgba(0, 0, 0, 0.500);
+    border-bottom: none;
+}
+
+[data-tooltip].t-top:hover:before,
+[data-tooltip].t-top:hover:after {
+    transform: translateX(-50%) translateY(-5px);
 }
 
 a:active,
@@ -77,7 +140,7 @@ a:visited {
 #weather {
     position: relative;
     display: flex;
-    height: 24em;    
+    height: 24em;
     justify-content: center;
     text-align: center;
     vertical-align: middle;
@@ -110,6 +173,12 @@ a:visited {
     cursor: pointer;
 }
 
+#citySearch {
+    max-width: 40em;
+    margin: auto;
+    cursor: text;
+}
+
 #city {
     position: relative;
     font-size: 30px;
@@ -121,7 +190,6 @@ a:visited {
     background-color: rgb(70, 70, 70);
     background: rgb(70, 70, 70);
 }
-
 
 #city:hover {
     color: #0cf;
@@ -145,9 +213,9 @@ a:visited {
     line-height: 0em;
     float: left;
     clear: both;
-     /* control icon size here */
+    /* control icon size here */
     font-size: 2.5em;
-    padding-right: 5%;  
+    padding-right: 5%;
 }
 
 .tempwrapper {
@@ -193,7 +261,7 @@ a:visited {
     background-color: transparent;
     border-radius: 50%;
     font-size: 10em;
-} 
+}
 
 .cloud {
     position: absolute;
@@ -522,7 +590,6 @@ a:visited {
     border-radius: 2rem;
 }
 
-
 [contenteditable]:focus {
     border-color: #0cf;
     outline-width: 0;
@@ -664,7 +731,6 @@ a:visited {
 
 /* Activity circle  */
 
-
 .pace .pace-activity {
     display: block;
     position: fixed;
@@ -682,52 +748,8 @@ a:visited {
     -ms-animation: pace-spinner 400ms linear infinite;
     -o-animation: pace-spinner 400ms linear infinite;
     animation: pace-spinner 400ms linear infinite;
-} 
+}
 
-
-/* @-webkit-keyframes pace-spinner {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
-} */
-
-/* @-moz-keyframes pace-spinner {
-    0% {
-        -moz-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -moz-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
-} */
-
-/* @-o-keyframes pace-spinner {
-    0% {
-        -o-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -o-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
-} */
-
-/* @-ms-keyframes pace-spinner {
-    0% {
-        -ms-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -ms-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
-} */
 
 @keyframes pace-spinner {
     0% {
@@ -738,4 +760,4 @@ a:visited {
         transform: rotate(360deg);
         transform: rotate(360deg);
     }
-} 
+}
