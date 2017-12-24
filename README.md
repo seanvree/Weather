@@ -35,7 +35,7 @@ var t = window.setInterval(searchByLocation, 30000);
  
 - Change the default temp unit from F to C by changing the following two items:
 
-**/index.html: LINE 49:**
+**/index.html: LINE 50:**
 
 ```
 <div id="unit" class="unit">&degC</div>
